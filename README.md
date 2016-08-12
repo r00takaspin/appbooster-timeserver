@@ -19,6 +19,10 @@ Moscow: 2015-04-11 13:30:50
 New York: 2015-04-11 02:30:50
 ```
 
+## Цель
+
+Обеспечить стабильный веб-сервис работащий на процессах для обеспеченя максимального числа одновременных соединений. В основу была взята модель работы веб-сервера Unicorn.
+
 ## SETUP
 
 
@@ -40,18 +44,18 @@ ruby ./utc_process.rb #запускаем в несколько процессо
 
 
 ```
-➜  ~ echo "GET http://localhost:8082/time?Kaliningrad,Moscow,Petersburg" | vegeta attack -duration=30s -rate=200 | tee results.bin | vegeta report
+➜  ~ echo "GET http://localhost:8081/time?Kaliningrad,Moscow,Petersburg" | vegeta attack -duration=30s -rate=200 | tee results.bin | vegeta report
 
 Requests      [total, rate]            6000, 200.03
-Duration      [total, attack, wait]    29.996867389s, 29.9949999s, 1.867489ms
-Latencies     [mean, 50, 95, 99, max]  554.270111ms, 406.18973ms, 1.55735098s, 1.721280593s, 1.829983441s
-Bytes In      [total, mean]            542574, 90.43
+Duration      [total, attack, wait]    29.997413377s, 29.994999771s, 2.413606ms
+Latencies     [mean, 50, 95, 99, max]  530.770787ms, 374.862024ms, 1.532831826s, 1.663431075s, 1.717920767s
+Bytes In      [total, mean]            514917, 85.82
 Bytes Out     [total, mean]            0, 0.00
-Success       [ratio]                  70.10%
-Status Codes  [code:count]             200:4206  0:1794
+Success       [ratio]                  73.35%
+Status Codes  [code:count]             200:4401  0:1599
 ```
 
-Видим, что число необработанных запросов порядка 30%
+Видим, что число необработанных запросов порядка 25%
 
 ### При использовании мультипроцессовой версии 
 
@@ -60,12 +64,17 @@ Status Codes  [code:count]             200:4206  0:1794
 ➜  ~ echo "GET http://localhost:8082/time?Kaliningrad,Moscow,Petersburg" | vegeta attack -duration=30s -rate=200 | tee results.bin | vegeta report
 
 Requests      [total, rate]            6000, 200.03
-Duration      [total, attack, wait]    29.998639212s, 29.994999916s, 3.639296ms
-Latencies     [mean, 50, 95, 99, max]  3.555889ms, 2.785235ms, 3.969807ms, 11.865394ms, 168.3134ms
-Bytes In      [total, mean]            772194, 128.70
+Duration      [total, attack, wait]    29.998023499s, 29.994999908s, 3.023591ms
+Latencies     [mean, 50, 95, 99, max]  2.902841ms, 2.816928ms, 3.604252ms, 4.420398ms, 26.696699ms
+Bytes In      [total, mean]            700596, 116.77
 Bytes Out     [total, mean]            0, 0.00
-Success       [ratio]                  99.77%
-Status Codes  [code:count]             200:5986  0:14
+Success       [ratio]                  99.80%
+Status Codes  [code:count]             200:5988  0:12
 ```
 
 Видим, что число необработанных запросов порядка 0.23%
+
+## Итог:
+В мультипроцессовом режиме веб-сервис держит 350 одновременных соединений с долей удачных ответов в 99.5%
+ 
+![Image](https://media.giphy.com/media/JBysUxnowXxS0/giphy.gif)
