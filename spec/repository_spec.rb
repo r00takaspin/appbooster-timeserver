@@ -7,7 +7,13 @@ describe CityRepository do
     expect(subject.utc_by_name('Moscow'))
   end
 
-  it '#utc by_city' do
-    expect(subject.utc_by_name('St. Petersburg'))
+  context '#utc by_city' do
+    it 'single word' do
+      expect(subject.utc_by_name('Moscow')).to eq('Europe/Moscow')
+    end
+
+    it 'two words' do
+      expect(subject.utc_by_name('St. Petersburg')).to eq('Europe/Moscow')
+    end
   end
 end

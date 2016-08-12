@@ -5,7 +5,7 @@ gem 'http_parser.rb'
 gem 'tzinfo'
 gem 'tzinfo-data'
 
-group :development, :test do
-  gem 'rspec'
-  gem 'pry'
-end
+gem 'rspec'
+gem 'pry'
+gem 'reek'
+gem 'rubocop'

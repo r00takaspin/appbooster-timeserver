@@ -1,14 +1,35 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    ast (2.2.0)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
+    codeclimate-engine-rb (0.3.1)
+      virtus (~> 1.0)
     coderay (1.1.1)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
+    equalizer (0.0.11)
     http_parser.rb (0.6.0)
+    ice_nine (0.11.2)
     method_source (0.8.2)
+    parser (2.3.1.2)
+      ast (~> 2.2)
+    powerpack (0.1.1)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    rainbow (2.1.0)
+    reek (4.2.3)
+      codeclimate-engine-rb (~> 0.3.1)
+      parser (~> 2.3.1, >= 2.3.1.2)
+      rainbow (~> 2.0)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
@@ -22,12 +43,25 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
+    rubocop (0.39.0)
+      parser (>= 2.3.0.7, < 3.0)
+      powerpack (~> 0.1)
+      rainbow (>= 1.99.1, < 3.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (~> 1.0, >= 1.0.1)
+    ruby-progressbar (1.7.5)
     slop (3.6.0)
     thread_safe (0.3.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     tzinfo-data (1.2016.6)
       tzinfo (>= 1.0.0)
+    unicode-display_width (1.0.3)
+    virtus (1.0.5)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
+      equalizer (~> 0.0, >= 0.0.9)
 
 PLATFORMS
   ruby
@@ -35,7 +69,9 @@ PLATFORMS
 DEPENDENCIES
   http_parser.rb
   pry
+  reek
   rspec
+  rubocop
   tzinfo
   tzinfo-data
 

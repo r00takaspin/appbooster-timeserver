@@ -1,3 +1,1 @@
-require 'pry'
-
-Dir['./src/*.rb'].each {|file| require file }
+Dir['./src/*.rb'].each { |file| require file }

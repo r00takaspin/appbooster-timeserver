@@ -1,5 +1,8 @@
 require 'http/parser'
 
+#
+# Wrapper around Http::Parser
+#
 class Request
   attr_reader :request_body
   attr_reader :socket
@@ -16,17 +19,22 @@ class Request
   end
 
   def params
-    path.split('?').count > 1 ? URI.unescape(path.split('?').pop) : nil
+    url_parts.count > 1 ? URI.unescape(url_parts.pop) : nil
   end
 
   private
+
   def body
     @request_body ||= read_body
   end
 
+  def url_parts
+    path.split('?')
+  end
+
   def read_body
     result = ''
-    while ((line = @socket.gets) && (line != "\r\n"))
+    while (line = @socket.gets) && (line != "\r\n")
       result += line
     end
     result

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Request do
-  # HACK: вместо стрима сокета подсовываем дескриптом открытого файла
+  # HACK: spoof unix socket with file descriptor
   subject { described_class.new(File.open('./spec/fixtures/http_request.txt')) }
 
   it 'should return correct path' do

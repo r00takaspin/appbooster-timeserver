@@ -1,8 +1,9 @@
-require 'singleton'
 require 'json'
-
+#
+# Search timezone by substring
+#
 class CityRepository
-  attr_accessor :timezone_list
+  attr_reader :timezone_list
 
   def initialize
     file = File.read('./timezones.json')
@@ -10,11 +11,9 @@ class CityRepository
   end
 
   def utc_by_name(str)
-    @timezone_list.each do |tz|
-      if tz['text'].downcase.index(str.downcase)
-        return tz['utc'].first
-      end
+    result = @timezone_list.select do |tz|
+      tz['text'].downcase.index(str.downcase)
     end
-    nil
+    result.count > 0 ? result.first['utc'].first : nil
   end
 end
