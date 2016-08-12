@@ -33,7 +33,7 @@ brew install vegeta #установка тулзы для бенчмарка
 cd %ПУТЬ_ДО_ПРОЕКТА_%
 bundle install
 ruby ./utc.rb #запускаем версию в один поток
-ruby ./utc_process.rb #запускаем в несколько процессов
+ruby ./utc_process.rb # в новом табе запускаем в несколько процессов
 ```
 
 
