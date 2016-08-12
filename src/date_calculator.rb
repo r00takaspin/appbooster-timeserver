@@ -44,11 +44,13 @@ class DateCalculator
   private
 
   def fill_cities
-    @cities.each do |city|
-      utc = @repository.utc_by_name(city)
-      if utc
-        tz = TZInfo::Timezone.get(utc)
-        @city_times << CityTime.new(city, tz.utc_to_local(@date))
+    if @cities
+      @cities.each do |city|
+        utc = @repository.utc_by_name(city)
+        if utc
+          tz = TZInfo::Timezone.get(utc)
+          @city_times << CityTime.new(city, tz.utc_to_local(@date))
+        end
       end
     end
   end
